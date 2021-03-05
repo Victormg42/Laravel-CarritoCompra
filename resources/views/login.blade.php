@@ -13,10 +13,10 @@
         {{csrf_field()}}
 
         <label>Email</label>
-        <input type="email" id="email" name="email" required><br>
+        <input type="email" id="email_usuario" name="email_usuario" required><br>
 
         <label>Password</label>
-        <input type="password" id="password" name="password" required><br>
+        <input type="password" id="passwd_usuario" name="passwd_usuario" required><br>
   
         <input type="submit" value="enviar" name="enviar">
 </form>

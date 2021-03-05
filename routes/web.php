@@ -18,15 +18,15 @@ use App\Http\Controllers\AlumnoController;
 });*/
 
 Route::get('mostrar', [AlumnoController::class, 'mostrar']);
-Route::delete('borrar/{id}', [AlumnoController::class, 'borrar']);
+Route::delete('borrar/{id_ropa}', [AlumnoController::class, 'borrar']);
 Route::get('crear', [AlumnoController::class, 'crear']);
 Route::post('recibir', [AlumnoController::class, 'recibir']);
-Route::get('actualizar/{id}', [AlumnoController::class, 'actualizar']);
-Route::put('modificar/{id}', [AlumnoController::class, 'modificar']);
+Route::get('actualizar/{id_ropa}', [AlumnoController::class, 'actualizar']);
+Route::put('modificar/{id_ropa}', [AlumnoController::class, 'modificar']);
 Route::get('/', [AlumnoController::class, 'login']);
 Route::post('recibirlogin', [AlumnoController::class, 'recibirlogin']);
-Route::get('pagar/{id}/{precio}', [AlumnoController::class, 'pagar']);
-Route::post('comprado/{id}', [AlumnoController::class, 'comprado']);
+Route::get('pagar/{id_ropa}/{precio_ropa}', [AlumnoController::class, 'pagar']);
+Route::post('comprado/{id_ropa}', [AlumnoController::class, 'comprado']);
 
 
 
