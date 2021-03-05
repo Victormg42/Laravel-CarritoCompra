@@ -5,30 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <title>ACTUALIZAR ALUMNO</title>
-    {{$alumno->nombre}}
+    {{$ropa->prenda_ropa}}
     <div> 
-             <form action="{{url('modificar/'.$alumno->id)}}"  method="post" enctype="multipart/form-data">
+             <form action="{{url('modificar/'.$ropa->id_ropa)}}"  method="post" enctype="multipart/form-data">
                 @csrf
                 <!--{{csrf_field()}}-->
                 {{method_field('PUT')}}
                   <label>Foto</label>
-                  <input type="file" name="foto" value="{{$alumno->foto}}" required>
+                  <input type="file" name="foto_ropa" value="{{$ropa->foto_ropa}}" required>
 
                   <label>Nombre</label>
                   <!-- {{-- {{<input type="text" name="__token" value=csrf_token()> }} --}}-->
-                  <input type="text" name="nombre" value="{{$alumno->nombre}}" required>
+                  <input type="text" name="prenda_ropa" value="{{$ropa->prenda_ropa}}" required>
 
-                  <label>Apellido</label>
-                  <input type="text" name="apellido" value="{{$alumno->apellido}}" required>
-
-                  <label>Email</label>
-                  <input type="email" name="email" value="{{$alumno->email}}" required>
-
-                  <label>Edad</label>
-                  <input type="number" name="edad" value="{{$alumno->edad}}" required>
-
-                  <label>password</label>
-                  <input type="password" name="password" value="{{$alumno->password}}" required>
+                  <label>Precio</label>
+                  <input type="text" name="precio_ropa" value="{{$ropa->precio_ropa}}" required>
 
                 <input type="submit" name="enviar" value="Enviar">
       <div>

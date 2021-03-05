@@ -88,13 +88,13 @@ class AlumnoController extends Controller
     public function mostrar(){
         // Obtener todos los usuarios de la BD y mandarlos a la vista.
         //$result = DB::select('SELECT * FROM tbl_alumnos');
-        $listaAlumnos = DB::table('tbl_alumnos')->get();
+        $listaRopa = DB::table('tbl_ropa')->get();
         //Se envia hacia la vista mediante la url el contenido de $listaAlumnos.
-        return view('mostrar', compact('listaAlumnos'));
+        return view('mostrar', compact('listaRopa'));
     }
 
-    public function borrar($id){
-        DB::table('tbl_alumnos')->where('id', '=', $id)->delete();
+    public function borrar($id_ropa){
+        DB::table('tbl_ropa')->where('id_ropa', '=', $id_ropa)->delete();
         return redirect('mostrar');
     }
 
@@ -104,34 +104,34 @@ class AlumnoController extends Controller
 
     public function recibir(Request $request){
         $datos = $request->except('_token', 'enviar');
-        if ($request->hasFile('foto')) {
-            $datos['foto']=$request->file('foto')->store('uploads','public');
+        if ($request->hasFile('foto_ropa')) {
+            $datos['foto_ropa']=$request->file('foto_ropa')->store('uploads','public');
         }
         //return $datosform;
-        DB::table('tbl_alumnos')->insertGetId(['foto'=>$datos['foto'],'nombre'=>$datos['nombre'],'apellido'=>$datos['apellido'],'edad'=>$datos['edad'],'email'=>$datos['email'],'password'=>$datos['password']]);
+        DB::table('tbl_ropa')->insertGetId(['foto_ropa'=>$datos['foto_ropa'],'prenda_ropa'=>$datos['prenda_ropa'],'precio_ropa'=>$datos['precio_ropa']]);
         return redirect('mostrar');
     }
 
-    public function actualizar($id){
+    public function actualizar($id_ropa){
         //Recuperar alumno a través de su id //
-        $alumno = DB::table('tbl_alumnos')->where('id', '=', $id)->first();
+        $ropa = DB::table('tbl_ropa')->where('id_ropa', '=', $id_ropa)->first();
         //Enviar los datos del alumno a la vista //
         //return response()->json($alumno);
-        return view('actualizar', compact('alumno'));
+        return view('actualizar', compact('ropa'));
     }
 
-    public function modificar($id, Request $request){
+    public function modificar($id_ropa, Request $request){
         $datos = request()->except('_token', 'enviar', '_method');
         //return $datos;
-        if ($request->hasfile('foto')) {
-            $alumno = DB::table('tbl_alumnos')->where('id', '=', $id)->first();
+        if ($request->hasfile('foto_ropa')) {
+            $ropa = DB::table('tbl_ropa')->where('id_ropa', '=', $id_ropa)->first();
             // eliminamos la ruta de la foto de la bd.
-            Storage::delete('public/'.$alumno->foto);
+            Storage::delete('public/'.$ropa->foto_ropa);
             // guardar la foto en el storage en la nueva ruta.
-            $datos['foto']=$request->file('foto')->store('uploads', 'public');
+            $datos['foto_ropa']=$request->file('foto_ropa')->store('uploads', 'public');
         }
         // actualizar bd
-        DB::table('tbl_alumnos')->where('id', '=', $id)->update($datos);
+        DB::table('tbl_ropa')->where('id_ropa', '=', $id_ropa)->update($datos);
         // redirigir a mostrar
         return redirect('mostrar');
     }
@@ -142,9 +142,9 @@ class AlumnoController extends Controller
 
     public function recibirlogin(Request $request){
         $datos=request()->except('_token', 'enviar');
-        $pasa=DB::table('tbl_alumnos')->where([
-            ['email', '=', $datos['email']], 
-            ['password', '=', $datos['password']],
+        $pasa=DB::table('tbl_usuario')->where([
+            ['email_usuario', '=', $datos['email_usuario']], 
+            ['passwd_usuario', '=', $datos['passwd_usuario']],
             ])->count();
             if ($pasa == 1) {
                 //establecer sesion
@@ -156,7 +156,7 @@ class AlumnoController extends Controller
             }
     }
 
-    public function pagar($id, $precio){
+    public function pagar($id_ropa, $precio_ropa){
         # return $precio;
 
        $apiContext = new \PayPal\Rest\ApiContext(

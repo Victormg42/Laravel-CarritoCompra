@@ -16,39 +16,31 @@
                 <th>Foto</th>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Edad</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Actualizar</th>
-                <th>Borrar</th>
+                <th>Precio</th>
                 <th>Comprar</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($listaAlumnos as $alumno)
+            @foreach ($listaRopa as $ropa)
             <tr>
-                <td><img src="{{asset('storage').'/'.$alumno->foto}}" width="100"></td>
-                <td>{{$alumno->id}}</td>
-                <td>{{$alumno->nombre}}</td>
-                <td>{{$alumno->apellido}}</td>
-                <td>{{$alumno->edad}}</td>
-                <td>{{$alumno->email}}</td>
-                <td>{{$alumno->password}}</td>
+                <td><img src="{{asset('storage').'/'.$ropa->foto_ropa}}" width="100"></td>
+                <td>{{$ropa->id_ropa}}</td>
+                <td>{{$ropa->prenda_ropa}}</td>
+                <td>{{$ropa->precio_ropa}}</td>
                 <td>
-                    <form method="get" action="{{url('/actualizar/'.$alumno->id)}}">
+                    <form method="get" action="{{url('/actualizar/'.$ropa->id_ropa)}}">
                     <button type='submit' class="btn btn-primary" onclick="return confirm('¿Estas seguro de actualizar?');">Actualizar</button>
                     </form>
                 </td>
                 <td>
-                    <form method="post" action="{{url('/borrar/'.$alumno->id)}}">
+                    <form method="post" action="{{url('/borrar/'.$ropa->id_ropa)}}">
                     {{csrf_field()}}
                     {{method_field('DELETE')}}
                     <button type='submit' class="btn btn-danger" onclick="return confirm('¿Borrar?');">Borrar</button>
                     </form>
                 </td>
                 <td>
-                    <form method="get" action="{{url('/pagar/'.$alumno->id.'/'.$alumno->precio)}}">
+                    <form method="get" action="{{url('/pagar/'.$ropa->id_ropa.'/'.$ropa->precio_ropa)}}">
                     {{csrf_field()}}
                     <button type='submit' class="btn btn-danger" onclick="return confirm('¿Comprar?');">Comprar</button>
                     </form>
