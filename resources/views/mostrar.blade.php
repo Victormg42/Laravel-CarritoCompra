@@ -17,7 +17,7 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Precio</th>
-                <th>Comprar</th>
+                <th colspan="3">Comprar</th>
             </tr>
         </thead>
         <tbody>
