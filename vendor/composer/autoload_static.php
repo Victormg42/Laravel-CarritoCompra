@@ -16,8 +16,6 @@ class ComposerStaticInit4ab01a0a29db72996fcd6904e8704a29
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
-        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
-        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
@@ -33,8 +31,10 @@ class ComposerStaticInit4ab01a0a29db72996fcd6904e8704a29
         'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
     );
 
@@ -163,6 +163,7 @@ class ComposerStaticInit4ab01a0a29db72996fcd6904e8704a29
             'DeepCopy\\' => 9,
             'Database\\Seeders\\' => 17,
             'Database\\Factories\\' => 19,
+            'Darryldecode\\' => 13,
         ),
         'C' => 
         array (
@@ -480,6 +481,10 @@ class ComposerStaticInit4ab01a0a29db72996fcd6904e8704a29
         array (
             0 => __DIR__ . '/../..' . '/database/factories',
         ),
+        'Darryldecode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode',
+        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
@@ -524,6 +529,7 @@ class ComposerStaticInit4ab01a0a29db72996fcd6904e8704a29
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AlumnoController' => __DIR__ . '/../..' . '/app/Http/Controllers/AlumnoController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\RopaController' => __DIR__ . '/../..' . '/app/Http/Controllers/RopaController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -535,6 +541,7 @@ class ComposerStaticInit4ab01a0a29db72996fcd6904e8704a29
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\AlumnoCrearRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AlumnoCrearRequest.php',
         'App\\Models\\Alumno' => __DIR__ . '/../..' . '/app/Models/Alumno.php',
+        'App\\Models\\Ropa' => __DIR__ . '/../..' . '/app/Models/Ropa.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -643,6 +650,21 @@ class ComposerStaticInit4ab01a0a29db72996fcd6904e8704a29
         'Cron\\HoursField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
+        'Darryldecode\\Cart\\Cart' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/Cart.php',
+        'Darryldecode\\Cart\\CartCollection' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/CartCollection.php',
+        'Darryldecode\\Cart\\CartCondition' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/CartCondition.php',
+        'Darryldecode\\Cart\\CartConditionCollection' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/CartConditionCollection.php',
+        'Darryldecode\\Cart\\CartServiceProvider' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/CartServiceProvider.php',
+        'Darryldecode\\Cart\\Exceptions\\InvalidConditionException' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/Exceptions/InvalidConditionException.php',
+        'Darryldecode\\Cart\\Exceptions\\InvalidItemException' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/Exceptions/InvalidItemException.php',
+        'Darryldecode\\Cart\\Exceptions\\UnknownModelException' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/Exceptions/UnknownModelException.php',
+        'Darryldecode\\Cart\\Facades\\CartFacade' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/Facades/CartFacade.php',
+        'Darryldecode\\Cart\\Helpers\\Helpers' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/Helpers/Helpers.php',
+        'Darryldecode\\Cart\\ItemAttributeCollection' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/ItemAttributeCollection.php',
+        'Darryldecode\\Cart\\ItemCollection' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/ItemCollection.php',
+        'Darryldecode\\Cart\\Validators\\CartConditionValidator' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/Validators/CartConditionValidator.php',
+        'Darryldecode\\Cart\\Validators\\CartItemValidator' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/Validators/CartItemValidator.php',
+        'Darryldecode\\Cart\\Validators\\Validator' => __DIR__ . '/..' . '/darryldecode/cart/src/Darryldecode/Cart/Validators/Validator.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
