@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumno;
-use App\Models\Ropa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -158,9 +157,9 @@ class AlumnoController extends Controller
             }
     }
 
-    public function pagar($id_ropa, $precio_ropa){
+    public function pagar($id){
         # return $precio;
-
+        $precio = Cart::getTotalQuantity();
        $apiContext = new \PayPal\Rest\ApiContext(
         new \PayPal\Auth\OAuthTokenCredential(
             config('services.paypal.clientid'),     // ClientID
@@ -172,7 +171,7 @@ class AlumnoController extends Controller
 
         $amount = new \PayPal\Api\Amount();
         //precio a pagar
-        $amount->setTotal($precio_ropa);
+        $amount->setTotal($precio);
         $amount->setCurrency('EUR');
 
         $transaction = new \PayPal\Api\Transaction();
@@ -180,7 +179,7 @@ class AlumnoController extends Controller
         //Si se produce el pago bien, te lleva a la url comprado y envía la información del id.
         //si se cancela te lleva a la pagina que tu le indiques, en este caso, el mostrar
         $redirectUrls = new \PayPal\Api\RedirectUrls();
-        $redirectUrls->setReturnUrl(url("comprado/".$id_ropa))->setCancelUrl(url("mostrar"));
+        $redirectUrls->setReturnUrl(url("comprado/".$id))->setCancelUrl(url("mostrar"));
 
         $payment = new \PayPal\Api\Payment();
         $payment->setIntent('sale')
@@ -205,9 +204,9 @@ class AlumnoController extends Controller
         return $id;
     }
 
-    public function verCarrito() {
+    /*public function verCarrito() {
         return view('mostrarCarrito');
-    }
+    }*/
 
     public function carritoAdd($id_ropa, $precio_ropa, $prenda_ropa, $cantidad_ropa) {
         Cart::add(array(
