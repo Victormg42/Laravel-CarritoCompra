@@ -6,6 +6,8 @@ use App\Models\Alumno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Correo;
 use Cart;
 
 class AlumnoController extends Controller
@@ -88,7 +90,6 @@ class AlumnoController extends Controller
 
     public function mostrar(){
         // Obtener todos los usuarios de la BD y mandarlos a la vista.
-        //$result = DB::select('SELECT * FROM tbl_alumnos');
         $listaRopa = DB::table('tbl_ropa')->get();
         //Se envia hacia la vista mediante la url el contenido de $listaAlumnos.
         return view('mostrar', compact('listaRopa'));
@@ -147,8 +148,13 @@ class AlumnoController extends Controller
             ['email_usuario', '=', $datos['email_usuario']], 
             ['passwd_usuario', '=', $datos['passwd_usuario']],
             ])->count();
+            $pasa1=DB::table('tbl_usuario')->where([
+                ['email_usuario', '=', $datos['email_usuario']], 
+                ['passwd_usuario', '=', $datos['passwd_usuario']],
+                ])->first();
             if ($pasa == 1) {
                 //establecer sesion
+                $request->session()->put('email_usuario', $pasa1->email_usuario);
                 //redirigir pagina mostrar
                 return redirect('mostrar');
             } else {
@@ -159,6 +165,7 @@ class AlumnoController extends Controller
 
     public function pagar($id){
         # return $precio;
+        $mensaje = "Pedido cancelado";
         $precio = Cart::getTotal();
        $apiContext = new \PayPal\Rest\ApiContext(
         new \PayPal\Auth\OAuthTokenCredential(
@@ -179,7 +186,7 @@ class AlumnoController extends Controller
         //Si se produce el pago bien, te lleva a la url comprado y envía la información del id.
         //si se cancela te lleva a la pagina que tu le indiques, en este caso, el mostrar
         $redirectUrls = new \PayPal\Api\RedirectUrls();
-        $redirectUrls->setReturnUrl(url("comprado/".$id))->setCancelUrl(url("mostrar"));
+        $redirectUrls->setReturnUrl(url("comprado"))->setCancelUrl(url("mostrar"));
 
         $payment = new \PayPal\Api\Payment();
         $payment->setIntent('sale')
@@ -200,8 +207,12 @@ class AlumnoController extends Controller
             }
     }
 
-    public function comprado(Request $request, $id) {
-        return $id;
+    public function comprado(Request $request) {
+        $listaRopa = DB::table('tbl_ropa')->get();
+        $email = session()->get('email_usuario');
+        $gmail = 'Estimado cliente, ya ha realizado su pedido!';
+        Mail::to($email)->send(new Correo($gmail));
+        return redirect('mostrar');
     }
 
     /*public function verCarrito() {
@@ -222,5 +233,11 @@ class AlumnoController extends Controller
     public function borrarCart($id) {
         Cart::remove($id);
         return back();
+    }
+
+    public function logout(){
+        //Cierra la sesion cuando se le da al link de cerrar sesion.
+        session()->forget(['email_usuario']);
+        return redirect('/');
     }
 }

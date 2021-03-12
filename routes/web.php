@@ -28,8 +28,9 @@ Route::put('modificar/{id_ropa}', [AlumnoController::class, 'modificar']);
 Route::get('/', [AlumnoController::class, 'login']);
 Route::post('recibirlogin', [AlumnoController::class, 'recibirlogin']);
 Route::get('pagar/{id}', [AlumnoController::class, 'pagar']);
-Route::post('comprado/{id_ropa}', [AlumnoController::class, 'comprado']);
+Route::get('comprado', [AlumnoController::class, 'comprado']);
 Route::get('carritoAdd/{id_ropa}/{precio_ropa}/{prenda_ropa}/{cantidad_ropa}', [AlumnoController::class, 'carritoAdd']);
+Route::get('logout', [AlumnoController::class, 'logout']);
 
 
 

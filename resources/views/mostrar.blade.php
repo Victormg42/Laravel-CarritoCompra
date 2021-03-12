@@ -15,8 +15,16 @@
             <form class="form-inline" method="GET" action="{{url('crear')}}">
                 <button type="submit" class="form-control mr-sm-2 btn navbar-btn btn-success">Crear</button>
             </form>
-                <button type="submit" onclick="openModal();" class="btn navbar-btn btn-success">Ver Carrito</button>
-                  
+            <h4>{{Session::get('email_usuario')}}</h4>
+            @if(session("mensaje"))
+                <p id="mensaje">
+                    {{session('mensaje')}}
+                </p>
+            @endif
+            <button style="margin-left: 52%;" type="submit" onclick="openModal();" class="btn navbar-btn btn-success">Ver Carrito</button>
+            <form action="{{url('logout')}}" method="get">
+                <button class="btn btn-success" type="submit">Logout</button>
+            </form>    
         </div>
     </nav>
 
@@ -54,7 +62,7 @@
                 <td>
                 <form method="get" action="{{url('/carritoAdd/'.$ropa->id_ropa.'/'.$ropa->precio_ropa.'/'.$ropa->prenda_ropa.'/'.$ropa->cantidad_ropa)}}">
                 @csrf
-                <button style="border:none; outline:none; background-color: transparent;"><i style="font-size: 30px;" class="fas fa-cart-plus black"></i></button>
+                <button style="border:none; outline:none; background-color: transparent;"><i style="font-size: 30px; margin-left: 24px;" class="fas fa-cart-plus black"></i></button>
                 </form>
                 </td>
             </tr>
@@ -81,8 +89,7 @@
                 <tbody>
                 @foreach (Cart::getContent() as $item)
                     <tr>
-                        <td><img style="margin-right: 10px" src="{{asset('storage').'/'.$ropa->foto_ropa}}" width="40">
-                            {{$item->name}}</td>
+                        <td>{{$item->name}}</td>
                         <td>{{$item->price}}€</td>
                         <td>{{$item->quantity}}</td>
                         <td>
