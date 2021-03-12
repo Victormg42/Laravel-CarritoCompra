@@ -109,7 +109,7 @@ class AlumnoController extends Controller
             $datos['foto_ropa']=$request->file('foto_ropa')->store('uploads','public');
         }
         //return $datosform;
-        DB::table('tbl_ropa')->insertGetId(['foto_ropa'=>$datos['foto_ropa'],'prenda_ropa'=>$datos['prenda_ropa'],'precio_ropa'=>$datos['precio_ropa']]);
+        DB::table('tbl_ropa')->insertGetId(['foto_ropa'=>$datos['foto_ropa'],'prenda_ropa'=>$datos['prenda_ropa'],'precio_ropa'=>$datos['precio_ropa'],'cantidad_ropa'=>$datos['cantidad_ropa']]);
         return redirect('mostrar');
     }
 
@@ -159,7 +159,7 @@ class AlumnoController extends Controller
 
     public function pagar($id){
         # return $precio;
-        $precio = Cart::getTotalQuantity();
+        $precio = Cart::getTotal();
        $apiContext = new \PayPal\Rest\ApiContext(
         new \PayPal\Auth\OAuthTokenCredential(
             config('services.paypal.clientid'),     // ClientID
