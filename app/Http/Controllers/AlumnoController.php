@@ -89,6 +89,9 @@ class AlumnoController extends Controller
     }
 
     public function mostrar(){
+        if (!session()->has('email_usuario')){
+            return redirect ('/');
+        }
         // Obtener todos los usuarios de la BD y mandarlos a la vista.
         $listaRopa = DB::table('tbl_ropa')->get();
         //Se envia hacia la vista mediante la url el contenido de $listaAlumnos.
@@ -101,6 +104,9 @@ class AlumnoController extends Controller
     }
 
     public function crear(){
+        if (!session()->has('email_usuario')){
+            return redirect ('/');
+        }
         return view('crear');
     }
 
@@ -115,6 +121,9 @@ class AlumnoController extends Controller
     }
 
     public function actualizar($id_ropa){
+        if (!session()->has('email_usuario')){
+            return redirect ('/');
+        }
         //Recuperar alumno a través de su id //
         $ropa = DB::table('tbl_ropa')->where('id_ropa', '=', $id_ropa)->first();
         //Enviar los datos del alumno a la vista //
@@ -208,6 +217,7 @@ class AlumnoController extends Controller
     }
 
     public function comprado(Request $request) {
+        Cart::clear();
         $listaRopa = DB::table('tbl_ropa')->get();
         $email = session()->get('email_usuario');
         $gmail = 'Estimado cliente, ya ha realizado su pedido!';
